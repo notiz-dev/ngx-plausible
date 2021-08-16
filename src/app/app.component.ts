@@ -17,6 +17,10 @@ import { Component } from '@angular/core';
       Download
     </button>
 
+    <a href="https://notiz.dev" target="_blank" [plausibleEvent]="'Naviagtion'">
+      notiz.dev
+    </a>
+
     <router-outlet></router-outlet>
   `,
   styles: [],
