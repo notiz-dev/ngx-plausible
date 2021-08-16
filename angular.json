@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngx-plausible": {
+    "plausible": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -41,7 +41,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngx-plausible",
+            "outputPath": "dist/plausible",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -93,10 +93,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ngx-plausible:build:production"
+              "browserTarget": "plausible:build:production"
             },
             "development": {
-              "browserTarget": "ngx-plausible:build:development"
+              "browserTarget": "plausible:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -104,11 +104,42 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-plausible:build"
+            "browserTarget": "plausible:build"
+          }
+        }
+      }
+    },
+    "ngx-plausible": {
+      "projectType": "library",
+      "root": "projects/ngx-plausible",
+      "sourceRoot": "projects/ngx-plausible/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-plausible/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-plausible/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-plausible/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-plausible/src/test.ts",
+            "tsConfig": "projects/ngx-plausible/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-plausible/karma.conf.js"
           }
         }
       }
     }
   },
-  "defaultProject": "ngx-plausible"
+  "defaultProject": "plausible"
 }
