@@ -13,7 +13,7 @@ declare global {
 })
 export class PlausibleService {
   constructor(@Inject(PLATFORM_ID) private platformId: string) {
-    if (!window.plausible) {
+    if (isPlatformBrowser(this.platformId) && !window.plausible) {
       console.warn(
         'Plausible script is missing in the <head> of your index.html.'
       );
