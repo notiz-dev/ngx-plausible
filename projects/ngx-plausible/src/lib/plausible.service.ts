@@ -12,10 +12,16 @@ declare global {
   providedIn: 'root',
 })
 export class PlausibleService {
-  constructor(@Inject(PLATFORM_ID) private platformId: string) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: string) {
+    if (!window.plausible) {
+      console.warn(
+        'Plausible script is missing in the <head> of your index.html.'
+      );
+    }
+  }
 
   event(event: PlausibleEvent | null, options?: PlausibleOptions) {
-    if (isPlatformBrowser(this.platformId) && event) {
+    if (isPlatformBrowser(this.platformId) && window.plausible && event) {
       window.plausible(event, options);
     }
   }
