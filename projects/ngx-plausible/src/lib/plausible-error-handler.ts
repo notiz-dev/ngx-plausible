@@ -1,6 +1,6 @@
 import { ErrorHandler, Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { PlausibleService } from 'ngx-plausible';
+import { PlausibleService } from './plausible.service';
 
 @Injectable()
 export class PlausibleErrorHandler implements ErrorHandler {
