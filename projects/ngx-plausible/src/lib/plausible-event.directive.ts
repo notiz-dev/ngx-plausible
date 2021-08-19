@@ -12,6 +12,7 @@ export class PlausibleEventDirective implements OnInit, OnDestroy {
   @Input() plausibleEvent: PlausibleEvent | null = null;
   @Input() plausibleCallback?: Function;
   @Input() plausibleProps?: Object;
+  @Input() plausibleEventDebounce = 500;
 
   /**
    * Default to `click` events.
@@ -33,7 +34,7 @@ export class PlausibleEventDirective implements OnInit, OnDestroy {
       )
     )
       .pipe(
-        debounceTime(500),
+        debounceTime(this.plausibleEventDebounce),
         tap(() => {
           this.plausibleService.event(this.plausibleEvent, {
             callback: this.plausibleCallback,
