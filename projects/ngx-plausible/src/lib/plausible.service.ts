@@ -15,7 +15,7 @@ export class PlausibleService {
   constructor(@Inject(PLATFORM_ID) private platformId: string) {
     if (isPlatformBrowser(this.platformId) && !window.plausible) {
       console.warn(
-        'Plausible script is missing in the <head> of your index.html.'
+        'Plausible script is missing in the <head> of your index.html. See https://plausible.io/docs/custom-event-goals.'
       );
     }
   }

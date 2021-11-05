@@ -4,6 +4,40 @@
 npm i ngx-plausible
 ```
 
+Add plausible [script](https://plausible.io/docs/plausible-script) for your domain and register a global function called `plausible` for [custom events](https://plausible.io/docs/custom-event-goals) in your `index.html`.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>NgxPlausible</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- plausible -->
+    <!-- replace yourdomain.com  -->
+    <script
+      defer
+      data-domain="yourdomain.com"
+      src="https://plausible.io/js/plausible.js"
+    ></script>
+    <!-- required for custom events with `plausible` function -->
+    <script>
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>
+```
+
 Import `PlausibleModule` into your component module and use `plausibleEvent` directive to trigger events.
 
 ```html

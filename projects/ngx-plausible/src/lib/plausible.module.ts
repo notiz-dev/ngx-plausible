@@ -1,4 +1,4 @@
-import { NgModule, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlausibleEventDirective } from './plausible-event.directive';
 
@@ -7,8 +7,4 @@ import { PlausibleEventDirective } from './plausible-event.directive';
   exports: [PlausibleEventDirective],
   imports: [CommonModule],
 })
-export class PlausibleModule implements OnInit {
-  ngOnInit(): void {
-    console.log('PlausibleModule');
-  }
-}
+export class PlausibleModule {}
