@@ -2,6 +2,10 @@
 
 [![npm version](https://badge.fury.io/js/@notiz%2Fngx-plausible.svg)](https://www.npmjs.com/package/@notiz/ngx-plausible)
 
+Integrate [Plausible](https://plausible.io/) [custom event](https://plausible.io/docs/custom-event-goals) easily into your Angular application.
+
+## Installation
+
 ```bash
 npm i @notiz/ngx-plausible
 ```
@@ -20,6 +24,7 @@ Add plausible [script](https://plausible.io/docs/plausible-script) for your doma
 
     <!-- plausible -->
     <!-- replace yourdomain.com  -->
+    <!-- use different script extensions https://plausible.io/docs/script-extensions -->
     <script
       defer
       data-domain="yourdomain.com"
