@@ -1,4 +1,4 @@
-import { PlausibleErrorHandler, PlausibleModule } from 'ngx-plausible';
+import { PlausibleErrorHandler, PlausibleModule } from '@notiz/ngx-plausible';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 

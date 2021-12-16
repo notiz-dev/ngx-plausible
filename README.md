@@ -1,7 +1,9 @@
 # NgxPlausible
 
+[![npm version](https://badge.fury.io/js/@notiz%2Fngx-plausible.svg)](https://www.npmjs.com/package/@notiz/ngx-plausible)
+
 ```bash
-npm i ngx-plausible
+npm i @notiz/ngx-plausible
 ```
 
 Add plausible [script](https://plausible.io/docs/plausible-script) for your domain and register a global function called `plausible` for [custom events](https://plausible.io/docs/custom-event-goals) in your `index.html`.
@@ -55,7 +57,7 @@ Import `PlausibleModule` into your component module and use `plausibleEvent` dir
 Use `PlausibleErrorHandler` to track `HttpErrorResponse`'s and client `Error`s.
 
 ```ts
-import { PlausibleErrorHandler, PlausibleModule } from 'ngx-plausible';
+import { PlausibleErrorHandler, PlausibleModule } from '@notiz/ngx-plausible';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 

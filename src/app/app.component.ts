@@ -26,7 +26,5 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class AppComponent {
-  title = 'ngx-plausible';
-
   search = '';
 }
