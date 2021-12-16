@@ -1,4 +1,4 @@
-# NgxPlausible
+# @notiz/ngx-plausible
 
 [![npm version](https://badge.fury.io/js/@notiz%2Fngx-plausible.svg)](https://www.npmjs.com/package/@notiz/ngx-plausible)
 
