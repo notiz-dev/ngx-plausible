@@ -57,6 +57,43 @@ Import `PlausibleModule` into your component module and use `plausibleEvent` dir
 </a>
 ```
 
+## Plausible Service
+
+Use directly `PlausibleService` to trigger an event.
+
+```ts
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { PlausibleService } from '@notiz/ngx-plausible';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <form>
+      <!-- contact form -->
+    </form>
+  `,
+  styles: [],
+})
+export class AppComponent {
+  constructor(private plausible: PlausibleService, private http: HttpClient) {}
+
+  sendContactForm() {
+    this.http
+      .post('https://api.example.dev/contact', {
+        name: '...',
+        email: '...',
+        message: '...',
+      })
+      .subscribe({
+        complete: () => {
+          this.plausible.event('Contact', { props: { action: 'submitted' } });
+        },
+      });
+  }
+}
+```
+
 ## Error Handling
 
 Use `PlausibleErrorHandler` to track `HttpErrorResponse`'s and client `Error`s.
