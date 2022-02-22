@@ -94,7 +94,7 @@ export class AppComponent {
 }
 ```
 
-Or observe your data streams such as tttp calls.
+Or observe your data streams such as http calls.
 
 ```ts
 import { Component } from '@angular/core';
