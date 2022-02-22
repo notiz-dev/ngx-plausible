@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "format": "prettier --write \"src/**/*.{ts,scss,html}\" \"projects/**/*.{ts,scss,html}\" ",
-    "build:lib": "ng build ngx-plausible --configuration production && cp README.md dist/ngx-plausible",
+    "build:lib": "ng build ngx-plausible && cp README.md dist/ngx-plausible",
     "publish:lib": "npm publish dist/ngx-plausible",
     "rocket": "npm run build:lib && npm run publish:lib"
   },
