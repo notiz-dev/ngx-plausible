@@ -94,6 +94,59 @@ export class AppComponent {
 }
 ```
 
+Or observe your data streams such as tttp calls.
+
+```ts
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { PlausibleService } from '@notiz/ngx-plausible';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <form>
+      <!-- contact form -->
+    </form>
+  `,
+  styles: [],
+})
+export class AppComponent {
+  constructor(private plausible: PlausibleService, private http: HttpClient) {}
+
+  sendContactForm() {
+    this.http
+      .post('https://api.example.dev/contact', {
+        name: '...',
+        email: '...',
+        message: '...',
+      })
+      .pipe(
+        this.plausible.observe({
+          loading: {
+            event: 'Contact',
+            options: { props: { action: 'loading' } },
+          },
+          success: (response) => {
+            return {
+              event: 'Contact',
+              options: {
+                props: { action: 'submitted' },
+              },
+            };
+          },
+          error: (error) => {
+            return {
+              event: 'Contact',
+              options: { props: { action: 'error' } },
+            };
+          },
+        })
+      )
+      .subscribe();
+  }
+}
+```
+
 ## Error Handling
 
 Use `PlausibleErrorHandler` to track `HttpErrorResponse`'s and client `Error`s.

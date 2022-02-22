@@ -43,6 +43,28 @@ export class AppComponent {
         email: '...',
         message: '...',
       })
+      .pipe(
+        this.plausible.observe({
+          loading: {
+            event: 'Contact',
+            options: { props: { action: 'loading' } },
+          },
+          success: (response) => {
+            return {
+              event: 'Contact',
+              options: {
+                props: { action: 'submitted' },
+              },
+            };
+          },
+          error: (error) => {
+            return {
+              event: 'Contact',
+              options: { props: { action: 'error' } },
+            };
+          },
+        })
+      )
       .subscribe({
         complete: () => {
           this.plausible.event('Contact', { props: { action: 'submitted' } });
