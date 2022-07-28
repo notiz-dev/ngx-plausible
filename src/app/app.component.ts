@@ -1,6 +1,6 @@
 import { PlausibleService } from '@notiz/ngx-plausible';
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +27,8 @@ import { HttpClient } from '@angular/common/http';
       <!-- contact form -->
     </form>
 
+    <button (click)="sendContactForm()">Submit</button>
+
     <router-outlet></router-outlet>
   `,
   styles: [],
@@ -37,6 +39,7 @@ export class AppComponent {
   constructor(private plausible: PlausibleService, private http: HttpClient) {}
 
   sendContactForm() {
+    throw new HttpErrorResponse({ status: 400, error: 'WYaa' });
     this.http
       .post('https://api.example.dev/contact', {
         name: '...',

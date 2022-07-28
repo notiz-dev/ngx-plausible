@@ -1,4 +1,11 @@
-import { PlausibleErrorHandler, PlausibleModule } from '@notiz/ngx-plausible';
+import {
+  PlausibleErrorHandler,
+  PlausibleModule,
+  PLAUSIBLE_ERROR_OPTIONS,
+  PlausibleErrorHandlerOptions,
+  createPlausibleErrorHandler,
+  PlausibleService,
+} from '@notiz/ngx-plausible';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -6,6 +13,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+
+const plausibleErrorOptions: PlausibleErrorHandlerOptions = {
+  logErrors: !environment.production,
+  plausibleErrorEvent: 'Error', // default event name
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +34,20 @@ import { HttpClientModule } from '@angular/common/http';
       provide: ErrorHandler,
       useClass: PlausibleErrorHandler,
     },
+    {
+      provide: PLAUSIBLE_ERROR_OPTIONS,
+      useValue: plausibleErrorOptions,
+    },
+    // or use
+    // {
+    //   provide: ErrorHandler,
+    //   useFactory: (plausibleService: PlausibleService) =>
+    //     createPlausibleErrorHandler(plausibleService, {
+    //       logErrors: true,
+    //       plausibleErrorEvent: 'Error', // default event name
+    //     }),
+    //   deps: [PlausibleService],
+    // },
   ],
   bootstrap: [AppComponent],
 })

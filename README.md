@@ -149,15 +149,28 @@ export class AppComponent {
 
 ## Error Handling
 
-Use `PlausibleErrorHandler` to track `HttpErrorResponse`'s and client `Error`s.
+Use `PlausibleErrorHandler` to track error's in your Angular application. The event will only show up in Plausible when you create a [custom event goal](https://plausible.io/docs/custom-event-goals#2-create-a-custom-event-goal-in-your-plausible-analytics-account) for your page.
+
+Create a custom event goal for the default event name: `Error`. Otherwise provide a custom event name by passing `plausibleErrorEvent` and create a custom event goal for custom event name.
 
 ```ts
-import { PlausibleErrorHandler, PlausibleModule } from '@notiz/ngx-plausible';
+import {
+  PlausibleErrorHandler,
+  PlausibleModule,
+  PLAUSIBLE_ERROR_OPTIONS,
+  PlausibleErrorHandlerOptions,
+} from '@notiz/ngx-plausible';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { environment } from 'src/environments/environment';
+
+const plausibleErrorOptions: PlausibleErrorHandlerOptions = {
+  logErrors: !environment.production,
+  plausibleErrorEvent: 'Error', // default event name
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -167,13 +180,54 @@ import { AppComponent } from './app.component';
       provide: ErrorHandler,
       useClass: PlausibleErrorHandler,
     },
+    {
+      provide: PLAUSIBLE_ERROR_OPTIONS,
+      useValue: plausibleErrorOptions,
+    },
   ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
 ```
 
-Add the following events as **Custom event** to the goals settings of your page:
+Or use `createPlausibleErrorHandler` to configure the `PlausibleErrorHandler` via a factory.
 
-- `Error Http` for `HttpErrorResponse`
-- `Error Client` for client side `Error`'s
+```ts
+import {
+  PlausibleModule,
+  createPlausibleErrorHandler,
+  PlausibleService,
+} from '@notiz/ngx-plausible';
+import { ErrorHandler, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { environment } from 'src/environments/environment';
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, PlausibleModule],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useFactory: (plausibleService: PlausibleService) =>
+        createPlausibleErrorHandler(plausibleService, {
+          logErrors: !environment.production,
+          plausibleErrorEvent: 'Error', // default event name
+        }),
+      deps: [PlausibleService],
+    },
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+Configure `PlausibleErrorHandler` with `PlausibleErrorHandlerOptions`:
+
+| Option                | Default         |
+| --------------------- | --------------- |
+| `logErrors`           | `false`         |
+| `plausibleErrorEvent` | `Error`         |
+| `extractor`           | Default provide |
