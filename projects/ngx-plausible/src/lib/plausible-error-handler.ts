@@ -40,9 +40,7 @@ export class PlausibleErrorHandler implements ErrorHandler {
     @Optional()
     @Inject(PLAUSIBLE_ERROR_OPTIONS)
     private options?: PlausibleErrorHandlerOptions
-  ) {
-    console.log(options);
-  }
+  ) {}
 
   handleError(error: any): void {
     const extractedError = this.extractError(error) || 'Unknown error';
@@ -107,4 +105,15 @@ export function createPlausibleErrorHandler(
   options?: PlausibleErrorHandlerOptions
 ) {
   return new PlausibleErrorHandler(plausibleService, options);
+}
+
+export function createPlausibleErrorHandlerProvider(
+  options?: PlausibleErrorHandlerOptions
+) {
+  return {
+    provide: ErrorHandler,
+    useFactory: (plausibleService: PlausibleService) =>
+      createPlausibleErrorHandler(plausibleService, options),
+    deps: [PlausibleService],
+  };
 }

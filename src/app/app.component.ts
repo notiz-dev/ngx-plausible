@@ -27,7 +27,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
       <!-- contact form -->
     </form>
 
-    <button (click)="sendContactForm()">Submit</button>
+    <button (click)="submitError()">Submit</button>
 
     <router-outlet></router-outlet>
   `,
@@ -38,8 +38,11 @@ export class AppComponent {
 
   constructor(private plausible: PlausibleService, private http: HttpClient) {}
 
+  submitError() {
+    throw new HttpErrorResponse({ status: 400, error: 'Bad Request' });
+  }
+
   sendContactForm() {
-    throw new HttpErrorResponse({ status: 400, error: 'WYaa' });
     this.http
       .post('https://api.example.dev/contact', {
         name: '...',

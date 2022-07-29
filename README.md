@@ -190,7 +190,7 @@ const plausibleErrorOptions: PlausibleErrorHandlerOptions = {
 export class AppModule {}
 ```
 
-Or use `createPlausibleErrorHandler` to configure the `PlausibleErrorHandler` via a factory.
+Or use `createPlausibleErrorHandler` and `createPlausibleErrorHandlerProvider` to configure the `PlausibleErrorHandler` via a factory.
 
 ```ts
 import {
@@ -218,6 +218,8 @@ import { environment } from 'src/environments/environment';
         }),
       deps: [PlausibleService],
     },
+    // or use
+    createPlausibleErrorHandlerProvider({ logErrors: true }),
   ],
   bootstrap: [AppComponent],
 })

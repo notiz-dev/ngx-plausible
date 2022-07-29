@@ -5,6 +5,7 @@ import {
   PlausibleErrorHandlerOptions,
   createPlausibleErrorHandler,
   PlausibleService,
+  createPlausibleErrorHandlerProvider,
 } from '@notiz/ngx-plausible';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -43,11 +44,13 @@ const plausibleErrorOptions: PlausibleErrorHandlerOptions = {
     //   provide: ErrorHandler,
     //   useFactory: (plausibleService: PlausibleService) =>
     //     createPlausibleErrorHandler(plausibleService, {
-    //       logErrors: true,
+    //       logErrors: !environment.production,
     //       plausibleErrorEvent: 'Error', // default event name
     //     }),
     //   deps: [PlausibleService],
     // },
+    // or use
+    // createPlausibleErrorHandlerProvider({ logErrors: true }),
   ],
   bootstrap: [AppComponent],
 })
