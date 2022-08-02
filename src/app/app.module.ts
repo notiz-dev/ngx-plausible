@@ -50,7 +50,7 @@ const plausibleErrorOptions: PlausibleErrorHandlerOptions = {
     //   deps: [PlausibleService],
     // },
     // or use
-    // createPlausibleErrorHandlerProvider({ logErrors: true }),
+    // createPlausibleErrorHandlerProvider({ logErrors: logErrors: !environment.production, }),
   ],
   bootstrap: [AppComponent],
 })

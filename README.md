@@ -219,7 +219,7 @@ import { environment } from 'src/environments/environment';
       deps: [PlausibleService],
     },
     // or use
-    createPlausibleErrorHandlerProvider({ logErrors: true }),
+    createPlausibleErrorHandlerProvider({ logErrors: !environment.production, }),
   ],
   bootstrap: [AppComponent],
 })
