@@ -45,7 +45,7 @@ Add plausible [script](https://plausible.io/docs/plausible-script) for your doma
 </html>
 ```
 
-Import `PlausibleModule` into your component module and use `plausibleEvent` directive to trigger events.
+Import `PlausibleEventDirective` into your component module and use `plausibleEvent` directive to trigger events.
 
 ```html
 <a
@@ -156,7 +156,7 @@ Create a custom event goal for the default event name: `Error`. Otherwise provid
 ```ts
 import {
   PlausibleErrorHandler,
-  PlausibleModule,
+  PlausibleEventDirective,
   PLAUSIBLE_ERROR_OPTIONS,
   PlausibleErrorHandlerOptions,
 } from '@notiz/ngx-plausible';
@@ -174,7 +174,7 @@ const plausibleErrorOptions: PlausibleErrorHandlerOptions = {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, PlausibleModule],
+  imports: [BrowserModule, AppRoutingModule, PlausibleEventDirective],
   providers: [
     {
       provide: ErrorHandler,
@@ -194,7 +194,7 @@ Or use `createPlausibleErrorHandler` and `createPlausibleErrorHandlerProvider` t
 
 ```ts
 import {
-  PlausibleModule,
+  PlausibleEventDirective,
   createPlausibleErrorHandler,
   PlausibleService,
 } from '@notiz/ngx-plausible';
@@ -207,7 +207,7 @@ import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, PlausibleModule],
+  imports: [BrowserModule, AppRoutingModule, PlausibleEventDirective],
   providers: [
     {
       provide: ErrorHandler,

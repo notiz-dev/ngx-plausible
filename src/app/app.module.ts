@@ -1,6 +1,6 @@
 import {
   PlausibleErrorHandler,
-  PlausibleModule,
+  PlausibleEventDirective,
   PLAUSIBLE_ERROR_OPTIONS,
   PlausibleErrorHandlerOptions,
   createPlausibleErrorHandler,
@@ -27,7 +27,7 @@ const plausibleErrorOptions: PlausibleErrorHandlerOptions = {
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    PlausibleModule,
+    PlausibleEventDirective,
     FormsModule,
   ],
   providers: [

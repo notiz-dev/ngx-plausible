@@ -6,6 +6,7 @@ import { debounceTime, map, takeUntil, tap } from 'rxjs/operators';
 import { ElementRef } from '@angular/core';
 
 @Directive({
+  standalone: true,
   selector: '[plausibleEvent]',
 })
 export class PlausibleEventDirective implements OnInit, OnDestroy {
