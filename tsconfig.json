@@ -16,12 +16,18 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
-    "lib": ["es2020", "dom"],
+    "lib": [
+      "es2020",
+      "dom"
+    ],
     "paths": {
-      "@notiz/ngx-plausible": ["projects/ngx-plausible/src/public-api"]
-    }
+      "@notiz/ngx-plausible": [
+        "projects/ngx-plausible/src/public-api"
+      ]
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
