@@ -22,16 +22,16 @@
     "@angular/platform-browser-dynamic": "^17.0.3",
     "@angular/router": "^17.0.3",
     "rxjs": "~7.8.1",
-    "tslib": "^2.5.2",
+    "tslib": "^2.6.2",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.1",
     "@angular/cli": "^17.0.1",
     "@angular/compiler-cli": "^17.0.3",
-    "@types/node": "^16.11.7",
+    "@types/node": "^18.18.0",
     "ng-packagr": "^17.0.1",
-    "prettier": "2.8.8",
+    "prettier": "3.1.0",
     "typescript": "~5.2.2"
   }
 }
