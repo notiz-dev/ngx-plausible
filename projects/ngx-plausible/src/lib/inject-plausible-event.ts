@@ -1,9 +1,6 @@
 import { inject } from '@angular/core';
-import {
-  PlausibleEvent,
-  PlausibleOptions,
-  PlausibleService,
-} from '@notiz/ngx-plausible';
+import { PlausibleService } from './plausible.service';
+import { PlausibleEvent, PlausibleOptions } from './plausible-types';
 
 export function injectPlausibleEvent() {
   const plausible = inject(PlausibleService);
