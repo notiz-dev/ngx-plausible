@@ -1,9 +1,14 @@
-import { PlausibleService } from '@notiz/ngx-plausible';
-import { Component } from '@angular/core';
+import { PlausibleService, injectPlausibleEvent } from '@notiz/ngx-plausible';
+import { Component, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { RouterOutlet } from '@angular/router';
+import { PlausibleEventDirective } from '@notiz/ngx-plausible';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [FormsModule, PlausibleEventDirective, RouterOutlet],
   template: `
     <input
       placeholder="Search"
@@ -27,19 +32,21 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
       <!-- contact form -->
     </form>
 
-    <button (click)="submitError()">Submit</button>
+    <button (click)="triggerEvent()">Submit</button>
 
     <router-outlet></router-outlet>
   `,
-  styles: [],
 })
 export class AppComponent {
+  private http = inject(HttpClient);
+  private plausible = inject(PlausibleService);
+
+  plausibleEvent = injectPlausibleEvent();
+
   search = '';
 
-  constructor(private plausible: PlausibleService, private http: HttpClient) {}
-
-  submitError() {
-    throw new HttpErrorResponse({ status: 400, error: 'Bad Request' });
+  triggerEvent() {
+    this.plausibleEvent('Test', { props: { action: 'clicked' } });
   }
 
   sendContactForm() {

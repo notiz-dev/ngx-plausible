@@ -9,7 +9,6 @@
         "@schematics/angular:component": {
           "inlineTemplate": true,
           "inlineStyle": true,
-          "style": "scss",
           "skipTests": true
         },
         "@schematics/angular:class": {
@@ -46,9 +45,8 @@
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss"],
+            "styles": ["src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -88,10 +86,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "plausible:build:production"
+              "buildTarget": "plausible:build:production"
             },
             "development": {
-              "browserTarget": "plausible:build:development"
+              "buildTarget": "plausible:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -99,7 +97,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "plausible:build"
+            "buildTarget": "plausible:build"
           }
         }
       }
