@@ -62,12 +62,13 @@ Import `PlausibleEventDirective` into your component module and use `plausibleEv
 Use directly `PlausibleService` to trigger an event.
 
 ```ts
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PlausibleService } from '@notiz/ngx-plausible';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   template: `
     <form>
       <!-- contact form -->
@@ -76,7 +77,8 @@ import { PlausibleService } from '@notiz/ngx-plausible';
   styles: [],
 })
 export class AppComponent {
-  constructor(private plausible: PlausibleService, private http: HttpClient) {}
+  private http = inject(HttpClient);
+  private plausible = inject(PlausibleService);
 
   sendContactForm() {
     this.http
@@ -97,12 +99,13 @@ export class AppComponent {
 Or observe your data streams such as http calls.
 
 ```ts
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { PlausibleService } from '@notiz/ngx-plausible';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   template: `
     <form>
       <!-- contact form -->
@@ -111,7 +114,8 @@ import { PlausibleService } from '@notiz/ngx-plausible';
   styles: [],
 })
 export class AppComponent {
-  constructor(private plausible: PlausibleService, private http: HttpClient) {}
+  private http = inject(HttpClient);
+  private plausible = inject(PlausibleService);
 
   sendContactForm() {
     this.http
@@ -143,6 +147,26 @@ export class AppComponent {
         })
       )
       .subscribe();
+  }
+}
+```
+
+## injectPlausibleEvent
+
+`injectPlausibleEvent` is a helper function that allows to inject plausible service and trigger events.
+
+```ts
+@Component({
+  standalone: true,
+  template: '<button (click)="triggerEvent()">New Event</button>',
+})
+class TestComponent {
+  plausibleEvent = injectPlausibleEvent();
+
+  triggerEvent() {
+    // TODO does something
+
+    this.plausibleEvent('Event');
   }
 }
 ```
